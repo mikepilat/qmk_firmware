@@ -14,6 +14,9 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 #include QMK_KEYBOARD_H
+#include "rgb.h"
+
+#define ENCODER_DIRECTION_FLIP
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     /*
@@ -23,9 +26,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         | Left              | Down | Right              |
      */
     [0] = LAYOUT(
-        KC_MUTE, KC_HOME, KC_MPLY,
-        MO(1)  , KC_UP  , RGB_MOD,
-        KC_LEFT, KC_DOWN, KC_RGHT
+        KC_MUTE, KC_HOME, RGB_TOG,
+        MO(1)  , KC_STOP, KC_MPLY,
+        KC_MUTE, KC_VOLD, KC_VOLU
     ),
     /*
         | RESET          | N/A  | Media Stop |
@@ -49,9 +52,9 @@ void encoder_update_user(uint8_t index, bool clockwise) {
     }
     else if (index == 1) {
         if (clockwise) {
-            tap_code(KC_PGDN);
+          rgblight_step();
         } else {
-            tap_code(KC_PGUP);
+          rgblight_step_reverse();
         }
     }
 }
