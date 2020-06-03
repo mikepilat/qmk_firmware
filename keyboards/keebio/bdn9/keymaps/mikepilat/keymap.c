@@ -16,7 +16,6 @@
 #include QMK_KEYBOARD_H
 #include "rgb.h"
 
-#define ENCODER_DIRECTION_FLIP
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     /*
@@ -26,8 +25,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         | Left              | Down | Right              |
      */
     [0] = LAYOUT(
-        KC_MUTE, KC_HOME, RGB_TOG,
-        MO(1)  , KC_STOP, KC_MPLY,
+        KC_MUTE, MO(1)  , RGB_TOG,
+        KC_MNXT, KC_STOP, KC_MPLY,
         KC_MUTE, KC_VOLD, KC_VOLU
     ),
     /*
